@@ -1,8 +1,9 @@
-package org.bitbucket.unclebearbot.codility.lesson001;
+package org.bitbucket.unclebearbot.codility.lesson00101;
 
 import org.bitbucket.unclebearbot.codility.utils.Assertion;
 
 /*
+
 https://app.codility.com/programmers/lessons/1-iterations/binary_gap
 
 A binary gap within a positive integer N is any maximal sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N.
@@ -28,7 +29,7 @@ Write an efficient algorithm for the following assumptions:
 
 public class Solution {
     public static void main(String[] args) {
-        new Solution().test();
+        test(new Solution());
     }
 
     public int solution(int N) {
@@ -43,21 +44,21 @@ public class Solution {
         return max;
     }
 
-    public void test() {
-        Assertion.equal(new Solution().solution(0), 0);            // 0
-        Assertion.equal(new Solution().solution(1), 0);            // 1
-        Assertion.equal(new Solution().solution(2), 0);            // 10
-        Assertion.equal(new Solution().solution(5), 1);            // 101
-        Assertion.equal(new Solution().solution(6), 0);            // 110
-        Assertion.equal(new Solution().solution(8), 0);            // 1000
-        Assertion.equal(new Solution().solution(15), 0);           // 1111
-        Assertion.equal(new Solution().solution(20), 1);           // 10100
-        Assertion.equal(new Solution().solution(32), 0);           // 100000
-        Assertion.equal(new Solution().solution(529), 4);          // 1000010001
-        Assertion.equal(new Solution().solution(561), 3);          // 1000110001
-        Assertion.equal(new Solution().solution(1041), 5);         // 10000010001
-        Assertion.equal(new Solution().solution(1162), 3);         // 10010001010
-        Assertion.equal(new Solution().solution(1073741825), 29);  // 1000000000000000000000000000001
-        Assertion.equal(new Solution().solution(2147483647), 0);   // 1111111111111111111111111111111
+    public static void test(Solution solution) {
+        Assertion.equalObjects(solution.solution(0 /* 0 */), 0);
+        Assertion.equalObjects(solution.solution(1 /* 1 */), 0);
+        Assertion.equalObjects(solution.solution(2 /* 10 */), 0);
+        Assertion.equalObjects(solution.solution(5 /* 101 */), 1);
+        Assertion.equalObjects(solution.solution(6 /* 110 */), 0);
+        Assertion.equalObjects(solution.solution(8 /* 1000 */), 0);
+        Assertion.equalObjects(solution.solution(15 /* 1111 */), 0);
+        Assertion.equalObjects(solution.solution(20 /* 10100 */), 1);
+        Assertion.equalObjects(solution.solution(32 /* 100000 */), 0);
+        Assertion.equalObjects(solution.solution(529 /* 1000010001 */), 4);
+        Assertion.equalObjects(solution.solution(561 /* 1000110001 */), 3);
+        Assertion.equalObjects(solution.solution(1041 /* 10000010001 */), 5);
+        Assertion.equalObjects(solution.solution(1162 /* 10010001010 */), 3);
+        Assertion.equalObjects(solution.solution(1073741825 /* 1000000000000000000000000000001 */), 29);
+        Assertion.equalObjects(solution.solution(2147483647 /* 1111111111111111111111111111111 */), 0);
     }
 }
