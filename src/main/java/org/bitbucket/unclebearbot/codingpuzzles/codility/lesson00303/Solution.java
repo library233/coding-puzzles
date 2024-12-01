@@ -57,7 +57,7 @@ public class Solution {
         int totalSum = Arrays.stream(A).sum();
         int leftSum = 0;
         int minDiff = Integer.MAX_VALUE;
-        for (int i = 0; i < A.length - 1; i++) {
+        for (int i = 0; i < A.length - 1; ++i) {
             leftSum += A[i];
             minDiff = Math.min(minDiff, Math.abs(leftSum - (totalSum - leftSum)));
         }
