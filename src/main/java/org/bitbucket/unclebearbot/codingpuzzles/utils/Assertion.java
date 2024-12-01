@@ -1,4 +1,4 @@
-package org.bitbucket.unclebearbot.codility.utils;
+package org.bitbucket.unclebearbot.codingpuzzles.utils;
 
 import java.util.Arrays;
 import java.util.Objects;

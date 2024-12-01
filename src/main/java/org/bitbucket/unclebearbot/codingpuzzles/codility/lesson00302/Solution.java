@@ -1,6 +1,6 @@
-package org.bitbucket.unclebearbot.codility.lesson00302;
+package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson00302;
 
-import org.bitbucket.unclebearbot.codility.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
