@@ -3,7 +3,7 @@ package org.bitbucket.unclebearbot.codingpuzzles.utils;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Assertion {
+public class Assertions {
     public static void equalObjects(Object a, Object b) {
         if (!Objects.equals(a, b)) {
             throw new AssertionError(diffObjects(a, b));

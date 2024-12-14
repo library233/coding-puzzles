@@ -1,10 +1,13 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson002.task01;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
 /*
 
 https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation
+
+# CyclicRotation
+# Rotate an array to the right by a given number of steps.
 
 An array A consisting of N integers is given.
 Rotation of the array means that each element is shifted right by one index, and the last element of the array is moved to the first place.
@@ -66,13 +69,13 @@ public class Solution {
     }
 
     public static void test(Solution solution) {
-        Assertion.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 1), new int[]{4, 1, 2, 3});
-        Assertion.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 2), new int[]{3, 4, 1, 2});
-        Assertion.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 3), new int[]{2, 3, 4, 1});
-        Assertion.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 4), new int[]{1, 2, 3, 4});
-        Assertion.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 5), new int[]{4, 1, 2, 3});
-        Assertion.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 111), new int[]{2, 3, 4, 1});
-        Assertion.equalArrays(solution.solution(new int[]{}, 1), new int[]{});
-        Assertion.equalArrays(solution.solution(new int[]{1}, 1), new int[]{1});
+        Assertions.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 1), new int[]{4, 1, 2, 3});
+        Assertions.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 2), new int[]{3, 4, 1, 2});
+        Assertions.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 3), new int[]{2, 3, 4, 1});
+        Assertions.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 4), new int[]{1, 2, 3, 4});
+        Assertions.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 5), new int[]{4, 1, 2, 3});
+        Assertions.equalArrays(solution.solution(new int[]{1, 2, 3, 4}, 111), new int[]{2, 3, 4, 1});
+        Assertions.equalArrays(solution.solution(new int[]{}, 1), new int[]{});
+        Assertions.equalArrays(solution.solution(new int[]{1}, 1), new int[]{1});
     }
 }

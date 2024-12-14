@@ -1,10 +1,13 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson005.task01;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
 /*
 
 https://app.codility.com/programmers/lessons/5-prefix_sums/passing_cars
+
+# PassingCars
+# Count the number of passing cars on the road.
 
 A non-empty array A consisting of N integers is given.
 The consecutive elements of array A represent consecutive cars on a road.
@@ -68,12 +71,12 @@ public class Solution {
     }
 
     public static void test(Solution solution) {
-        Assertion.equalObjects(solution.solution(new int[]{/**/     0, 1, 0, 1, 1     /**/}), 5);
-        Assertion.equalObjects(solution.solution(new int[]{/**/  0, 0, 1, 0, 1, 1     /**/}), 8);
-        Assertion.equalObjects(solution.solution(new int[]{/**/  1, 0, 1, 0, 1, 1     /**/}), 5);
-        Assertion.equalObjects(solution.solution(new int[]{/**/     0, 1, 0, 1, 1, 0  /**/}), 5);
-        Assertion.equalObjects(solution.solution(new int[]{/**/     0, 1, 0, 1, 1, 1  /**/}), 7);
-        Assertion.equalObjects(solution.solution(new int[]{1, 1, 1, 1, 1}), 0);
-        Assertion.equalObjects(solution.solution(new int[]{0, 0, 0, 0, 0}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{/**/     0, 1, 0, 1, 1     /**/}), 5);
+        Assertions.equalObjects(solution.solution(new int[]{/**/  0, 0, 1, 0, 1, 1     /**/}), 8);
+        Assertions.equalObjects(solution.solution(new int[]{/**/  1, 0, 1, 0, 1, 1     /**/}), 5);
+        Assertions.equalObjects(solution.solution(new int[]{/**/     0, 1, 0, 1, 1, 0  /**/}), 5);
+        Assertions.equalObjects(solution.solution(new int[]{/**/     0, 1, 0, 1, 1, 1  /**/}), 7);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1, 1, 1, 1}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{0, 0, 0, 0, 0}), 0);
     }
 }

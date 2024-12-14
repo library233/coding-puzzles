@@ -1,12 +1,15 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson003.task03;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
 import java.util.Arrays;
 
 /*
 
 https://app.codility.com/programmers/lessons/3-time_complexity/tape_equilibrium
+
+# TapeEquilibrium
+# Minimize the value |(A[0] + ... + A[P-1]) - (A[P] + ... + A[N-1])|.
 
 A non-empty array A consisting of N integers is given.
 Array A represents numbers on a tape.
@@ -65,10 +68,10 @@ public class Solution {
     }
 
     public static void test(Solution solution) {
-        Assertion.equalObjects(solution.solution(new int[]{1, 1}), 0);
-        Assertion.equalObjects(solution.solution(new int[]{5, 6}), 1);
-        Assertion.equalObjects(solution.solution(new int[]{1, 2, 3, 4, 10}), 0);
-        Assertion.equalObjects(solution.solution(new int[]{3, 1, 2, 4, 3}), 1);
-        Assertion.equalObjects(solution.solution(new int[]{-1000, 1000}), 2000);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{5, 6}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3, 4, 10}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{3, 1, 2, 4, 3}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{-1000, 1000}), 2000);
     }
 }

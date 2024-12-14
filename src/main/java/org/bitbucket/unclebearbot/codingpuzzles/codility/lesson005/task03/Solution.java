@@ -1,10 +1,13 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson005.task03;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
 /*
 
 https://app.codility.com/programmers/lessons/5-prefix_sums/genomic_range_query
+
+# GenomicRangeQuery
+# Find the minimal nucleotide from a range of sequence DNA.
 
 A DNA sequence can be represented as a string consisting of the letters A, C, G and T, which correspond to the types of successive nucleotides in the sequence.
 Each nucleotide has an impact factor, which is an integer.
@@ -78,9 +81,9 @@ public class Solution {
     }
 
     public static void test(Solution solution) {
-        Assertion.equalArrays(solution.solution("A", new int[]{0}, new int[]{0}), new int[]{1});
-        Assertion.equalArrays(solution.solution("TGCA", new int[]{0, 1, 2, 3}, new int[]{0, 1, 2, 3}), new int[]{4, 3, 2, 1});
-        Assertion.equalArrays(solution.solution("AATCG", new int[]{0, 2}, new int[]{1, 4}), new int[]{1, 2});
-        Assertion.equalArrays(solution.solution("CAGCCTA", new int[]{2, 5, 0}, new int[]{4, 5, 6}), new int[]{2, 4, 1});
+        Assertions.equalArrays(solution.solution("A", new int[]{0}, new int[]{0}), new int[]{1});
+        Assertions.equalArrays(solution.solution("TGCA", new int[]{0, 1, 2, 3}, new int[]{0, 1, 2, 3}), new int[]{4, 3, 2, 1});
+        Assertions.equalArrays(solution.solution("AATCG", new int[]{0, 2}, new int[]{1, 4}), new int[]{1, 2});
+        Assertions.equalArrays(solution.solution("CAGCCTA", new int[]{2, 5, 0}, new int[]{4, 5, 6}), new int[]{2, 4, 1});
     }
 }

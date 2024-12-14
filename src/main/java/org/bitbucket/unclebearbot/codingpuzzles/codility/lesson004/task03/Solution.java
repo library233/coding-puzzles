@@ -1,10 +1,13 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson004.task03;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
 /*
 
 https://app.codility.com/programmers/lessons/4-counting_elements/max_counters
+
+# MaxCounters
+# Calculate the values of counters after applying all alternating operations: increase counter by 1; set value of all counters to current maximum.
 
 You are given N counters, initially set to 0, and you have two possible operations on them:
     increase(X) − counter X is increased by 1,
@@ -82,9 +85,9 @@ public class Solution {
     }
 
     public static void test(Solution solution) {
-        Assertion.equalArrays(solution.solution(5, new int[]{3, 4, 4, 6, 1, 4, 4}), new int[]{3, 2, 2, 4, 2});
-        Assertion.equalArrays(solution.solution(1, new int[]{1, 2, 1, 2, 1}), new int[]{3});
-        Assertion.equalArrays(solution.solution(3, new int[]{4, 4, 4}), new int[]{0, 0, 0});
-        Assertion.equalArrays(solution.solution(2, new int[]{1, 2, 1, 2, 3}), new int[]{2, 2});
+        Assertions.equalArrays(solution.solution(5, new int[]{3, 4, 4, 6, 1, 4, 4}), new int[]{3, 2, 2, 4, 2});
+        Assertions.equalArrays(solution.solution(1, new int[]{1, 2, 1, 2, 1}), new int[]{3});
+        Assertions.equalArrays(solution.solution(3, new int[]{4, 4, 4}), new int[]{0, 0, 0});
+        Assertions.equalArrays(solution.solution(2, new int[]{1, 2, 1, 2, 3}), new int[]{2, 2});
     }
 }

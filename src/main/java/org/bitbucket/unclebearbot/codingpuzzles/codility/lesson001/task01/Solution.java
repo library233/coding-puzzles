@@ -1,10 +1,13 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson001.task01;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
 /*
 
 https://app.codility.com/programmers/lessons/1-iterations/binary_gap
+
+# BinaryGap
+# Find longest sequence of zeros in binary representation of an integer.
 
 A binary gap within a positive integer N is any maximal sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N.
 
@@ -45,20 +48,20 @@ public class Solution {
     }
 
     public static void test(Solution solution) {
-        Assertion.equalObjects(solution.solution(0 /* 0 */), 0);
-        Assertion.equalObjects(solution.solution(1 /* 1 */), 0);
-        Assertion.equalObjects(solution.solution(2 /* 10 */), 0);
-        Assertion.equalObjects(solution.solution(5 /* 101 */), 1);
-        Assertion.equalObjects(solution.solution(6 /* 110 */), 0);
-        Assertion.equalObjects(solution.solution(8 /* 1000 */), 0);
-        Assertion.equalObjects(solution.solution(15 /* 1111 */), 0);
-        Assertion.equalObjects(solution.solution(20 /* 10100 */), 1);
-        Assertion.equalObjects(solution.solution(32 /* 100000 */), 0);
-        Assertion.equalObjects(solution.solution(529 /* 1000010001 */), 4);
-        Assertion.equalObjects(solution.solution(561 /* 1000110001 */), 3);
-        Assertion.equalObjects(solution.solution(1041 /* 10000010001 */), 5);
-        Assertion.equalObjects(solution.solution(1162 /* 10010001010 */), 3);
-        Assertion.equalObjects(solution.solution(1073741825 /* 1000000000000000000000000000001 */), 29);
-        Assertion.equalObjects(solution.solution(2147483647 /* 1111111111111111111111111111111 */), 0);
+        Assertions.equalObjects(solution.solution(0 /* 0 */), 0);
+        Assertions.equalObjects(solution.solution(1 /* 1 */), 0);
+        Assertions.equalObjects(solution.solution(2 /* 10 */), 0);
+        Assertions.equalObjects(solution.solution(5 /* 101 */), 1);
+        Assertions.equalObjects(solution.solution(6 /* 110 */), 0);
+        Assertions.equalObjects(solution.solution(8 /* 1000 */), 0);
+        Assertions.equalObjects(solution.solution(15 /* 1111 */), 0);
+        Assertions.equalObjects(solution.solution(20 /* 10100 */), 1);
+        Assertions.equalObjects(solution.solution(32 /* 100000 */), 0);
+        Assertions.equalObjects(solution.solution(529 /* 1000010001 */), 4);
+        Assertions.equalObjects(solution.solution(561 /* 1000110001 */), 3);
+        Assertions.equalObjects(solution.solution(1041 /* 10000010001 */), 5);
+        Assertions.equalObjects(solution.solution(1162 /* 10010001010 */), 3);
+        Assertions.equalObjects(solution.solution(1073741825 /* 1000000000000000000000000000001 */), 29);
+        Assertions.equalObjects(solution.solution(2147483647 /* 1111111111111111111111111111111 */), 0);
     }
 }

@@ -1,6 +1,6 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson004.task04;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 /*
 
 https://app.codility.com/programmers/lessons/4-counting_elements/missing_integer
+
+# MissingInteger
+# Find the smallest positive integer that does not occur in a given sequence.
 
 This is a demo task.
 
@@ -43,11 +46,11 @@ public class Solution {
     }
 
     public static void test(Solution solution) {
-        Assertion.equalObjects(solution.solution(new int[]{1, 3, 6, 4, 1, 2}), 5);
-        Assertion.equalObjects(solution.solution(new int[]{1, 2, 3}), 4);
-        Assertion.equalObjects(solution.solution(new int[]{-1, -3}), 1);
-        Assertion.equalObjects(solution.solution(new int[]{0, 0, 0, 0}), 1);
-        Assertion.equalObjects(solution.solution(new int[]{1000000}), 1);
-        Assertion.equalObjects(solution.solution(new int[]{1, 2, 2, 2, 3, 3, 4, 4, 5}), 6);
+        Assertions.equalObjects(solution.solution(new int[]{1, 3, 6, 4, 1, 2}), 5);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3}), 4);
+        Assertions.equalObjects(solution.solution(new int[]{-1, -3}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{0, 0, 0, 0}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1000000}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 2, 2, 3, 3, 4, 4, 5}), 6);
     }
 }

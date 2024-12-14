@@ -1,6 +1,6 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson004.task01;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +8,9 @@ import java.util.Set;
 /*
 
 https://app.codility.com/programmers/lessons/4-counting_elements/frog_river_one
+
+# FrogRiverOne
+# Find the earliest time when a frog can jump to the other side of a river.
 
 A small frog wants to get to the other side of a river.
 The frog is initially located on one bank of the river (position 0) and wants to get to the opposite bank (position X+1).
@@ -73,8 +76,8 @@ public class Solution {
     }
 
     public static void test(Solution solution) {
-        Assertion.equalObjects(solution.solution(3, new int[]{1, 2, 3}), 2);
-        Assertion.equalObjects(solution.solution(5, new int[]{1, 3, 1, 4, 2, 3, 5, 4}), 6);
-        Assertion.equalObjects(solution.solution(3, new int[]{1, 2, 1, 2, 1}), -1);
+        Assertions.equalObjects(solution.solution(3, new int[]{1, 2, 3}), 2);
+        Assertions.equalObjects(solution.solution(5, new int[]{1, 3, 1, 4, 2, 3, 5, 4}), 6);
+        Assertions.equalObjects(solution.solution(3, new int[]{1, 2, 1, 2, 1}), -1);
     }
 }

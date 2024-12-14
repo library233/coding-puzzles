@@ -1,10 +1,13 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson005.task02;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
 /*
 
 https://app.codility.com/programmers/lessons/5-prefix_sums/count_div
+
+# CountDiv
+# Compute number of integers divisible by k in range [a..b].
 
 Write a function:
     class Solution { public int solution(int A, int B, int K); }
@@ -32,11 +35,11 @@ public class Solution {
     }
 
     public static void test(Solution solution) {
-        Assertion.equalObjects(solution.solution(20, 30, 10), 2);
-        Assertion.equalObjects(solution.solution(20, 30, 20), 1);
-        Assertion.equalObjects(solution.solution(20, 30, 30), 1);
-        Assertion.equalObjects(solution.solution(20, 30, 40), 0);
-        Assertion.equalObjects(solution.solution(0, 1, 2000000000), 1);
-        Assertion.equalObjects(solution.solution(0, 2000000000, 1), 2000000001);
+        Assertions.equalObjects(solution.solution(20, 30, 10), 2);
+        Assertions.equalObjects(solution.solution(20, 30, 20), 1);
+        Assertions.equalObjects(solution.solution(20, 30, 30), 1);
+        Assertions.equalObjects(solution.solution(20, 30, 40), 0);
+        Assertions.equalObjects(solution.solution(0, 1, 2000000000), 1);
+        Assertions.equalObjects(solution.solution(0, 2000000000, 1), 2000000001);
     }
 }

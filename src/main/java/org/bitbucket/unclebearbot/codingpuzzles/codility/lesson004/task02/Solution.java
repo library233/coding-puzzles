@@ -1,6 +1,6 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson004.task02;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +8,9 @@ import java.util.Set;
 /*
 
 https://app.codility.com/programmers/lessons/4-counting_elements/perm_check
+
+# PermCheck
+# Check whether array A is a permutation.
 
 A non-empty array A consisting of N integers is given.
 
@@ -91,11 +94,11 @@ public abstract class Solution {
     }
 
     public static void test(Solution solution) {
-        Assertion.equalObjects(solution.solution(new int[]{1, 2, 3, 4}), 1);
-        Assertion.equalObjects(solution.solution(new int[]{4, 1, 3, 2}), 1);
-        Assertion.equalObjects(solution.solution(new int[]{1, 2, 4}), 0);
-        Assertion.equalObjects(solution.solution(new int[]{1, 2, 1, 2}), 0);
-        Assertion.equalObjects(solution.solution(new int[]{1}), 1);
-        Assertion.equalObjects(solution.solution(new int[]{2}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3, 4}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{4, 1, 3, 2}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 4}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 1, 2}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{2}), 0);
     }
 }

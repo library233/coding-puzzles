@@ -1,6 +1,6 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson003.task02;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertion;
+import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
@@ -8,6 +8,9 @@ import java.util.stream.IntStream;
 /*
 
 https://app.codility.com/programmers/lessons/3-time_complexity/perm_missing_elem
+
+# PermMissingElem
+# Find the missing element in a given permutation.
 
 An array A consisting of N different integers is given.
 The array contains integers in the range [1..(N + 1)], which means that exactly one element is missing.
@@ -59,15 +62,15 @@ public abstract class Solution {
     }
 
     public static void test(Solution solution) {
-        Assertion.equalObjects(solution.solution(new int[]{}), 1);
-        Assertion.equalObjects(solution.solution(new int[]{1}), 2);
-        Assertion.equalObjects(solution.solution(new int[]{2}), 1);
-        Assertion.equalObjects(solution.solution(new int[]{2, 3, 1, 5}), 4);
-        Assertion.equalObjects(solution.solution(new int[]{2, 3, 4, 1, 5}), 6);
+        Assertions.equalObjects(solution.solution(new int[]{}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{2}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{2, 3, 1, 5}), 4);
+        Assertions.equalObjects(solution.solution(new int[]{2, 3, 4, 1, 5}), 6);
         int[] ints = new int[100000];
         for (int i = 1; i <= ints.length; ++i) {
             ints[i - 1] = i < 23333 ? i : i + 1;
         }
-        Assertion.equalObjects(solution.solution(ints), 23333);
+        Assertions.equalObjects(solution.solution(ints), 23333);
     }
 }
