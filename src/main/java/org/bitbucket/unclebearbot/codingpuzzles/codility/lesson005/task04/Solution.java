@@ -55,11 +55,32 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int length = A.length;
+        int result = 0;
+        double avg1 = Double.MAX_VALUE;
+        for (int i = 0; i < length - 1; i++) {
+            double avg2 = (A[i] + A[i + 1]) / 2.0;
+            if (avg2 < avg1) {
+                avg1 = avg2;
+                result = i;
+            }
+            if (i < length - 2) {
+                double avg3 = (A[i] + A[i + 1] + A[i + 2]) / 3.0;
+                if (avg3 < avg1) {
+                    avg1 = avg3;
+                    result = i;
+                }
+            }
+        }
+        return result;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{4, 2, 2, 5, 1, 5, 8}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1, 1, 1}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{-3, -5, -8, -4, -10}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{10, 10, 10, 10, -1, -10, -10, 1, 1}), 5);
+        Assertions.equalObjects(solution.solution(new int[]{-10000, 10000}), 0);
     }
 }

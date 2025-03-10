@@ -2,6 +2,8 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson006.task02;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.Arrays;
+
 /*
 
 https://app.codility.com/programmers/lessons/6-sorting/max_product_of_three
@@ -50,11 +52,16 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        Arrays.sort(A);
+        return Math.max(A[A.length - 1] * A[A.length - 2] * A[A.length - 3], A[0] * A[1] * A[A.length - 1]);
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{-3, 1, 2, -2, 5, 6}), 60);
+        Assertions.equalObjects(solution.solution(new int[]{-10, -10, 1, 3, 2}), 300);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3}), 6);
+        Assertions.equalObjects(solution.solution(new int[]{-5, -4, -3, -2, -1}), -6);
+        Assertions.equalObjects(solution.solution(new int[]{10, 10, 10, 10}), 1000);
     }
 }

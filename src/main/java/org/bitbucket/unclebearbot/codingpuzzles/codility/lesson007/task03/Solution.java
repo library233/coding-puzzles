@@ -2,6 +2,9 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson007.task03;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /*
 
 https://app.codility.com/programmers/lessons/7-stacks_and_queues/nesting
@@ -32,11 +35,27 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(String S) {
+        Deque<Character> stack = new ArrayDeque<>();
+        for (char c : S.toCharArray()) {
+            if (c == '(') {
+                stack.push(c);
+            } else {
+                if (stack.isEmpty()) {
+                    return 0;
+                }
+                stack.pop();
+            }
+        }
+        return stack.isEmpty() ? 1 : 0;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution("(()(())())"), 1);
+        Assertions.equalObjects(solution.solution("())"), 0);
+        Assertions.equalObjects(solution.solution(""), 1);
+        Assertions.equalObjects(solution.solution("()"), 1);
+        Assertions.equalObjects(solution.solution("(()(()))"), 1);
+        Assertions.equalObjects(solution.solution("(()))("), 0);
     }
 }

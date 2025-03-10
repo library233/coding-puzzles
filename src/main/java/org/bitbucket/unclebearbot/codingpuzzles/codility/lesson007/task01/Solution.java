@@ -33,11 +33,31 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(String S) {
+        char[] stack = new char[S.length()];
+        int top = -1;
+        for (int i = 0; i < S.length(); i++) {
+            char c = S.charAt(i);
+            if (c == '(' || c == '[' || c == '{') {
+                stack[++top] = c;
+            } else {
+                if (top == -1) return 0;
+                char last = stack[top--];
+                if ((c == ')' && last != '(') ||
+                    (c == ']' && last != '[') ||
+                    (c == '}' && last != '{')) {
+                    return 0;
+                }
+            }
+        }
+        return top == -1 ? 1 : 0;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution("{[()()]}"), 1);
+        Assertions.equalObjects(solution.solution("([)()]"), 0);
+        Assertions.equalObjects(solution.solution("{[()]}"), 1);
+        Assertions.equalObjects(solution.solution("((()))"), 1);
+        Assertions.equalObjects(solution.solution("["), 0);
     }
 }

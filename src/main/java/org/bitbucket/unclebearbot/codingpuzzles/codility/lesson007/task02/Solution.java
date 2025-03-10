@@ -2,6 +2,8 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson007.task02;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.Stack;
+
 /*
 
 https://app.codility.com/programmers/lessons/7-stacks_and_queues/fish
@@ -66,11 +68,28 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A, int[] B) {
+        Stack<Integer> stack = new Stack<>();
+        int survivors = 0;
+        for (int i = 0; i < A.length; i++) {
+            if (B[i] == 1) {
+                stack.push(A[i]);
+            } else {
+                while (!stack.isEmpty() && stack.peek() < A[i]) {
+                    stack.pop();
+                }
+                if (stack.isEmpty()) {
+                    survivors++;
+                }
+            }
+        }
+        return survivors + stack.size();
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{4, 3, 2, 1, 5}, new int[]{0, 1, 0, 0, 0}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{5, 1, 6, 2, 3}, new int[]{1, 0, 1, 0, 1}), 3);
+        Assertions.equalObjects(solution.solution(new int[]{10, 20, 30}, new int[]{1, 0, 1}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3}, new int[]{0, 0, 1}), 3);
     }
 }

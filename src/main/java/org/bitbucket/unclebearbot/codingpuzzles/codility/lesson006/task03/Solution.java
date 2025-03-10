@@ -2,6 +2,8 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson006.task03;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.Arrays;
+
 /*
 
 https://app.codility.com/programmers/lessons/6-sorting/triangle
@@ -45,11 +47,23 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
+    public int solution(int[] A) {
+        if (A.length < 3) return 0;
+        Arrays.sort(A);
+        for (int i = 0; i < A.length - 2; i++) {
+            if ((long) A[i] + A[i + 1] > A[i + 2]) {
+                return 1;
+            }
+        }
         return 0;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{10, 2, 5, 1, 8, 20}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{10, 50, 5, 1}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1, 1}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{-5, -4, -3, -2, -1}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{5, 10}), 0);
     }
 }

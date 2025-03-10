@@ -2,6 +2,8 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson006.task04;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.Arrays;
+
 /*
 
 https://app.codility.com/programmers/lessons/6-sorting/number_of_disc_intersections
@@ -48,11 +50,35 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int length = A.length;
+        long[] left = new long[length];
+        long[] right = new long[length];
+        for (int i = 0; i < length; i++) {
+            left[i] = (long) i - A[i];
+            right[i] = (long) i + A[i];
+        }
+        Arrays.sort(left);
+        Arrays.sort(right);
+        int circles = 0, intersections = 0;
+        int j = 0;
+        for (int i = 0; i < length; i++) {
+            while (j < length && left[j] <= right[i]) {
+                intersections += circles;
+                circles++;
+                if (intersections > 10000000) return -1;
+                j++;
+            }
+            circles--;
+        }
+        return intersections;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 5, 2, 1, 4, 0}), 11);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1, 1}), 3);
+        Assertions.equalObjects(solution.solution(new int[]{0, 0, 0}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{0, 1, 0, 1}), 4);
+        Assertions.equalObjects(solution.solution(new int[]{10, 10, 10, 10}), 6);
     }
 }
