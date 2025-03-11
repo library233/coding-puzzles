@@ -2,6 +2,9 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson007.task04;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /*
 
 https://app.codility.com/programmers/lessons/7-stacks_and_queues/stone_wall
@@ -42,11 +45,27 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] H) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        int count = 0;
+        for (int h : H) {
+            while (!stack.isEmpty() && stack.peek() > h) {
+                stack.pop();
+            }
+            if (stack.isEmpty() || stack.peek() < h) {
+                stack.push(h);
+                ++count;
+            }
+        }
+        return count;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{8, 8, 5, 7, 9, 8, 7, 4, 8}), 7);
+        Assertions.equalObjects(solution.solution(new int[]{1}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{5, 5, 5, 5, 5}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3, 4, 5}), 5);
+        Assertions.equalObjects(solution.solution(new int[]{5, 4, 3, 2, 1}), 5);
+        Assertions.equalObjects(solution.solution(new int[]{1, 3, 2, 1, 3, 4, 1}), 5);
     }
 }

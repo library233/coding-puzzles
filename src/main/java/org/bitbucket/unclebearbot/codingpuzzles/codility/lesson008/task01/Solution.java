@@ -41,11 +41,35 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int size = 0, candidate = 0;
+        for (int value : A) {
+            if (size == 0) {
+                candidate = value;
+                ++size;
+            } else if (value == candidate) {
+                ++size;
+            } else {
+                --size;
+            }
+        }
+        int count = 0, index = -1;
+        for (int i = 0; i < A.length; ++i) {
+            if (A[i] == candidate) {
+                ++count;
+                if (index == -1) {
+                    index = i;
+                }
+            }
+        }
+        return count > A.length / 2 ? index : -1;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{3, 4, 3, 2, 3, -1, 3, 3}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3, 4, 5}), -1);
+        Assertions.equalObjects(solution.solution(new int[]{2, 2, 2, 2, 2}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1, 1, 2, 2, 2, 1}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1}), 0);
     }
 }

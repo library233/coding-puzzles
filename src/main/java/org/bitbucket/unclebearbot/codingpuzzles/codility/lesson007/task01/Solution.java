@@ -36,7 +36,7 @@ public class Solution {
     public int solution(String S) {
         char[] stack = new char[S.length()];
         int top = -1;
-        for (int i = 0; i < S.length(); i++) {
+        for (int i = 0; i < S.length(); ++i) {
             char c = S.charAt(i);
             if (c == '(' || c == '[' || c == '{') {
                 stack[++top] = c;

@@ -54,7 +54,7 @@ public class Solution {
         int length = A.length;
         long[] left = new long[length];
         long[] right = new long[length];
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length; ++i) {
             left[i] = (long) i - A[i];
             right[i] = (long) i + A[i];
         }
@@ -62,14 +62,14 @@ public class Solution {
         Arrays.sort(right);
         int circles = 0, intersections = 0;
         int j = 0;
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length; ++i) {
             while (j < length && left[j] <= right[i]) {
                 intersections += circles;
-                circles++;
+                ++circles;
                 if (intersections > 10000000) return -1;
-                j++;
+                ++j;
             }
-            circles--;
+            --circles;
         }
         return intersections;
     }

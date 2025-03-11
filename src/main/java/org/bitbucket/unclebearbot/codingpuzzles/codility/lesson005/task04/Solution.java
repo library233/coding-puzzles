@@ -59,7 +59,7 @@ public class Solution {
         int length = A.length;
         int result = 0;
         double avg1 = Double.MAX_VALUE;
-        for (int i = 0; i < length - 1; i++) {
+        for (int i = 0; i < length - 1; ++i) {
             double avg2 = (A[i] + A[i + 1]) / 2.0;
             if (avg2 < avg1) {
                 avg1 = avg2;

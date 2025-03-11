@@ -59,7 +59,7 @@ public class Solution {
         for (int direction : A) {
             boolean forward = direction == 0;
             if (forward) {
-                forwardCount++;
+                ++forwardCount;
             } else {
                 pairedReverseCount += forwardCount;
                 if (pairedReverseCount > 1000000000) {
