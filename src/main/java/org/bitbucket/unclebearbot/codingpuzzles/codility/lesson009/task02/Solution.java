@@ -38,11 +38,43 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int result = Integer.MIN_VALUE;
+        int currentMax = 0;
+        for (int j : A) {
+            currentMax += j;
+            if (currentMax > result) {
+                result = currentMax;
+            }
+            if (currentMax < 0) {
+                currentMax = 0;
+            }
+        }
+        if (result == Integer.MIN_VALUE) {
+            result = 0;
+        }
+        if (A.length == 0) return 0;
+        result = Integer.MIN_VALUE;
+        currentMax = 0;
+        for (int j : A) {
+            currentMax += j;
+            if (currentMax > result) {
+                result = currentMax;
+            }
+            if (currentMax < 0) {
+                currentMax = 0;
+            }
+        }
+        return result;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{3, 2, -6, 4, 0}), 5);
+        Assertions.equalObjects(solution.solution(new int[]{-1, -2, -3}), -1);
+        Assertions.equalObjects(solution.solution(new int[]{1}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{0}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{-5}), -5);
+        Assertions.equalObjects(solution.solution(new int[]{1, -5, 2}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}), 6);
     }
 }

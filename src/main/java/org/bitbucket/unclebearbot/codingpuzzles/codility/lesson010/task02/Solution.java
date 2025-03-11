@@ -38,11 +38,23 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int N) {
+        int minPerimeter = Integer.MAX_VALUE;
+        if (N == 1) return 4;
+        for (int i = 1; i * i <= N; ++i) {
+            if (N % i == 0) {
+                minPerimeter = Math.min(minPerimeter, 2 * (i + N / i));
+            }
+        }
+        return minPerimeter;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(30), 22);
+        Assertions.equalObjects(solution.solution(1), 4);
+        Assertions.equalObjects(solution.solution(2), 6);
+        Assertions.equalObjects(solution.solution(16), 16);
+        Assertions.equalObjects(solution.solution(100), 40);
+        Assertions.equalObjects(solution.solution(1000000000), 126500);
     }
 }

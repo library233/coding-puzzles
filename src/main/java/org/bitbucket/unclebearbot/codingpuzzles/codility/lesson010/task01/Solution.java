@@ -30,11 +30,26 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int N) {
+        int count = 0;
+        for (int i = 1; i * i <= N; ++i) {
+            if (N % i == 0) {
+                if (i * i == N) {
+                    count++;
+                } else {
+                    count += 2;
+                }
+            }
+        }
+        return count;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(24), 8);
+        Assertions.equalObjects(solution.solution(1), 1);
+        Assertions.equalObjects(solution.solution(2), 2);
+        Assertions.equalObjects(solution.solution(10), 4);
+        Assertions.equalObjects(solution.solution(16), 5);
+        Assertions.equalObjects(solution.solution(25), 3);
     }
 }

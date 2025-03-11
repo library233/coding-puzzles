@@ -52,11 +52,25 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int maxProfit = 0;
+        if (A.length < 2) {
+            return 0;
+        }
+        int minPrice = A[0];
+        for (int i = 1; i < A.length; ++i) {
+            maxProfit = Math.max(maxProfit, A[i] - minPrice);
+            minPrice = Math.min(minPrice, A[i]);
+        }
+        return maxProfit;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{23171, 21011, 21123, 21366, 21013, 21367}), 356);
+        Assertions.equalObjects(solution.solution(new int[]{5, 4, 3, 2, 1}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{10}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3, 4, 5}), 4);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1, 1, 1, 1}), 0);
     }
 }

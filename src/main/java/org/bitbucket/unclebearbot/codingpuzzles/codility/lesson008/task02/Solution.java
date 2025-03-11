@@ -52,11 +52,56 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int n = A.length;
+        if (n == 0) {
+            return 0;
+        }
+        int candidate = -1;
+        int count = 0;
+        for (int val : A) {
+            if (count == 0) {
+                candidate = val;
+                count = 1;
+            } else if (candidate == val) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+        int leader = -1;
+        int leaderCount = 0;
+        for (int val : A) {
+            if (val == candidate) {
+                leaderCount++;
+            }
+        }
+        if (leaderCount > n / 2) {
+            leader = candidate;
+        } else {
+            return 0;
+        }
+
+        int equiLeaders = 0;
+        int leftLeaderCount = 0;
+        for (int i = 0; i < n - 1; ++i) {
+            if (A[i] == leader) {
+                leftLeaderCount++;
+            }
+            int leftLength = i + 1;
+            int rightLength = n - 1 - i;
+            if (leftLeaderCount > leftLength / 2 && (leaderCount - leftLeaderCount) > rightLength / 2) {
+                equiLeaders++;
+            }
+        }
+        return equiLeaders;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{4, 3, 4, 4, 4, 2}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3, 4, 5}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{0, 0}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{0, 0, 0}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1, 1, 2, 2}), 0);
     }
 }

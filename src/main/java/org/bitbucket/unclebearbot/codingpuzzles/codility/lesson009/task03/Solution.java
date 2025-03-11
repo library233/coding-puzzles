@@ -57,11 +57,42 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int n = A.length;
+        if (n < 3) {
+            return 0;
+        }
+        int[] leftMaxSlice = new int[n];
+        int[] rightMaxSlice = new int[n];
+        int maxEndingHere = 0;
+        int maxSoFar = Integer.MIN_VALUE;
+        for (int i = 0; i < n; ++i) {
+            maxEndingHere = Math.max(A[i], maxEndingHere + A[i]);
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+            leftMaxSlice[i] = maxSoFar;
+        }
+        maxSoFar = Integer.MIN_VALUE;
+        maxEndingHere = 0;
+        for (int i = n - 1; i >= 0; --i) {
+            maxEndingHere = Math.max(A[i], maxEndingHere + A[i]);
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+            rightMaxSlice[i] = maxSoFar;
+        }
+        int maxDoubleSliceSum = 0;
+        for (int y = 1; y < n - 1; ++y) {
+            int leftSum = (y > 1) ? leftMaxSlice[y - 2] : 0;
+            int rightSum = (y < n - 2) ? rightMaxSlice[y + 1] : 0;
+            maxDoubleSliceSum = Math.max(maxDoubleSliceSum, leftSum + rightSum);
+        }
+        return maxDoubleSliceSum;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{3, 2, 6, -1, 4, 5, -1, 2}), 17);
+        Assertions.equalObjects(solution.solution(new int[]{5, 0, 1, 0, 5}), 10);
+        Assertions.equalObjects(solution.solution(new int[]{-8, 10, -9, -7, -3, 2, -3, -5, 1, -6}), 12);
+        Assertions.equalObjects(solution.solution(new int[]{}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{-5, -4, -3, -2, -1}), 0);
     }
 }
