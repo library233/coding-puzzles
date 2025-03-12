@@ -2,6 +2,9 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson010.task04;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 
 https://app.codility.com/programmers/lessons/10-prime_and_composite_numbers/peaks
@@ -83,11 +86,52 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
+    public int solution(int[] A) {
+        int n = A.length;
+        if (n < 3) {
+            return 0;
+        }
+        List<Integer> peakIndices = new ArrayList<>();
+        for (int i = 1; i < n - 1; ++i) {
+            if (A[i - 1] < A[i] && A[i] > A[i + 1]) {
+                peakIndices.add(i);
+            }
+        }
+        for (int blockCount = n; blockCount >= 1; --blockCount) {
+            if (n % blockCount == 0) {
+                int blockSize = n / blockCount;
+                boolean possible = true;
+                for (int blockIndex = 0; blockIndex < blockCount; ++blockIndex) {
+                    int start = blockIndex * blockSize;
+                    int end = (blockIndex + 1) * blockSize;
+                    boolean hasPeak = false;
+                    for (int peakIndex : peakIndices) {
+                        if (peakIndex >= start && peakIndex < end) {
+                            hasPeak = true;
+                            break;
+                        }
+                    }
+                    if (!hasPeak) {
+                        possible = false;
+                        break;
+                    }
+                }
+                if (possible) {
+                    return blockCount;
+                }
+            }
+        }
         return 0;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3, 4, 3, 4, 1, 2, 3, 4, 6, 2}), 3);
+        Assertions.equalObjects(solution.solution(new int[]{}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 5, 1}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, 5, 1, 5, 1}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{0, 1, 0, 1, 0, 1, 0}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, 3, 2, 1, 5, 3, 1, 6, 4, 3}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5}), 1);
     }
 }

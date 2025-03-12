@@ -2,6 +2,9 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson012.task02;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /*
 
 https://app.codility.com/programmers/lessons/12-euclidean_algorithm/common_prime_divisors
@@ -44,11 +47,54 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A, int[] B) {
+        int count = 0;
+        for (int i = 0; i < A.length; ++i) {
+            if (hasSamePrimeDivisors(A[i], B[i])) {
+                ++count;
+            }
+        }
+        return count;
+    }
+
+    private boolean hasSamePrimeDivisors(int N, int M) {
+        Set<Integer> primeDivisorsN = getPrimeDivisors(N);
+        Set<Integer> primeDivisorsM = getPrimeDivisors(M);
+        return primeDivisorsN.equals(primeDivisorsM);
+    }
+
+    private Set<Integer> getPrimeDivisors(int num) {
+        Set<Integer> divisors = new HashSet<>();
+        if (num == 1) {
+            return divisors;
+        }
+        while (num % 2 == 0) {
+            divisors.add(2);
+            num /= 2;
+        }
+        for (int i = 3; i * i <= num; i += 2) {
+            while (num % i == 0) {
+                divisors.add(i);
+                num /= i;
+            }
+        }
+        if (num > 1) {
+            divisors.add(num);
+        }
+        return divisors;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{15, 10, 3}, new int[]{75, 30, 5}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{15}, new int[]{75}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{10}, new int[]{30}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{9}, new int[]{5}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1}, new int[]{1}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{2}, new int[]{4}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{6}, new int[]{12}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{21}, new int[]{42}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{2 * 3 * 5 * 7}, new int[]{2 * 3 * 5 * 7 * 11}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{2 * 3 * 5 * 7 * 11}, new int[]{2 * 3 * 5 * 7}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{2 * 3 * 5 * 7}, new int[]{2 * 2 * 3 * 3 * 5 * 5 * 7 * 7}), 1);
     }
 }

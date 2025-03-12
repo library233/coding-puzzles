@@ -53,11 +53,52 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int[] solution(int N, int[] P, int[] Q) {
+        boolean[] prime = new boolean[N + 1];
+        for (int i = 2; i <= N; ++i) {
+            prime[i] = true;
+        }
+        for (int i = 2; i * i <= N; ++i) {
+            if (prime[i]) {
+                for (int j = i * i; j <= N; j += i) {
+                    prime[j] = false;
+                }
+            }
+        }
+        boolean[] isSemiprime = new boolean[N + 1];
+        for (int i = 2; i <= N; ++i) {
+            if (!prime[i]) {
+                for (int j = 2; j * j <= i; ++j) {
+                    if (i % j == 0) {
+                        if (prime[j] && prime[i / j]) {
+                            isSemiprime[i] = true;
+                            break;
+                        }
+                        if (prime[j] && j * j == i) {
+                            isSemiprime[i] = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        int[] semiprimeCounts = new int[N + 1];
+        for (int i = 1; i <= N; ++i) {
+            semiprimeCounts[i] = semiprimeCounts[i - 1] + (isSemiprime[i] ? 1 : 0);
+        }
+        int m = P.length;
+        int[] result = new int[m];
+        for (int i = 0; i < m; ++i) {
+            result[i] = semiprimeCounts[Q[i]] - semiprimeCounts[P[i] - 1];
+        }
+        return result;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalArrays(solution.solution(26, new int[]{1, 4, 16}, new int[]{26, 10, 20}), new int[]{10, 4, 0});
+        Assertions.equalArrays(solution.solution(30, new int[]{1, 5, 25}, new int[]{30, 15, 30}), new int[]{10, 5, 2});
+        Assertions.equalArrays(solution.solution(1, new int[]{1}, new int[]{1}), new int[]{0});
+        Assertions.equalArrays(solution.solution(4, new int[]{1, 4}, new int[]{4, 4}), new int[]{1, 1});
+        Assertions.equalArrays(solution.solution(15, new int[]{1, 8, 12}, new int[]{15, 10, 15}), new int[]{6, 2, 2});
     }
 }

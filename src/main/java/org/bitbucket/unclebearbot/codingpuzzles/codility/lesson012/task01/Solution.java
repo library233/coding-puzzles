@@ -44,11 +44,24 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int N, int M) {
+        int gcd = N;
+        while (M != 0) {
+            int temp = M;
+            M = gcd % M;
+            gcd = temp;
+        }
+        return N / gcd;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(10, 4), 5);
+        Assertions.equalObjects(solution.solution(12, 3), 4);
+        Assertions.equalObjects(solution.solution(17, 5), 17);
+        Assertions.equalObjects(solution.solution(1, 1), 1);
+        Assertions.equalObjects(solution.solution(1000000, 1), 1000000);
+        Assertions.equalObjects(solution.solution(1000000, 1000000), 1);
+        Assertions.equalObjects(solution.solution(999999, 999999), 1);
+        Assertions.equalObjects(solution.solution(999999, 2), 999999);
     }
 }

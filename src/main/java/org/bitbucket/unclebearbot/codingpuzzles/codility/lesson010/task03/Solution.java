@@ -2,6 +2,9 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson010.task03;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 
 https://app.codility.com/programmers/lessons/10-prime_and_composite_numbers/flags
@@ -76,11 +79,57 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        List<Integer> peakIndices = new ArrayList<>();
+        int n = A.length;
+        if (n < 3) {
+            return 0;
+        }
+        for (int i = 1; i < n - 1; ++i) {
+            if (A[i - 1] < A[i] && A[i] > A[i + 1]) {
+                peakIndices.add(i);
+            }
+        }
+        if (peakIndices.isEmpty()) {
+            return 0;
+        }
+        int maxFlags = 0;
+        int low = 0;
+        int high = peakIndices.size() + 1;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (mid == 0) {
+                low = mid + 1;
+                continue;
+            }
+            int flagsPlaced = 0;
+            int lastFlagIndex = -mid;
+            for (int peakIndex : peakIndices) {
+                if (peakIndex - lastFlagIndex >= mid) {
+                    ++flagsPlaced;
+                    lastFlagIndex = peakIndex;
+                    if (flagsPlaced == mid) {
+                        break;
+                    }
+                }
+            }
+            if (flagsPlaced == mid) {
+                maxFlags = Math.max(maxFlags, mid);
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return maxFlags;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 5, 3, 4, 3, 4, 1, 2, 3, 4, 6, 2}), 3);
+        Assertions.equalObjects(solution.solution(new int[]{}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 5, 1}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, 5, 1, 5, 1}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{0, 1, 0, 1, 0, 1, 0}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{1, 3, 2, 1, 5, 3, 1, 6, 4, 3}), 3);
     }
 }

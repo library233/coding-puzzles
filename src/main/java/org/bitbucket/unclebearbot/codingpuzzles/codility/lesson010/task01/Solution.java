@@ -35,7 +35,7 @@ public class Solution {
         for (int i = 1; i * i <= N; ++i) {
             if (N % i == 0) {
                 if (i * i == N) {
-                    count++;
+                    ++count;
                 } else {
                     count += 2;
                 }

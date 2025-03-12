@@ -64,16 +64,16 @@ public class Solution {
                 candidate = val;
                 count = 1;
             } else if (candidate == val) {
-                count++;
+                ++count;
             } else {
-                count--;
+                --count;
             }
         }
         int leader = -1;
         int leaderCount = 0;
         for (int val : A) {
             if (val == candidate) {
-                leaderCount++;
+                ++leaderCount;
             }
         }
         if (leaderCount > n / 2) {
@@ -86,12 +86,12 @@ public class Solution {
         int leftLeaderCount = 0;
         for (int i = 0; i < n - 1; ++i) {
             if (A[i] == leader) {
-                leftLeaderCount++;
+                ++leftLeaderCount;
             }
             int leftLength = i + 1;
             int rightLength = n - 1 - i;
             if (leftLeaderCount > leftLength / 2 && (leaderCount - leftLeaderCount) > rightLength / 2) {
-                equiLeaders++;
+                ++equiLeaders;
             }
         }
         return equiLeaders;

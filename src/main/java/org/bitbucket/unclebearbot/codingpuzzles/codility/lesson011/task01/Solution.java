@@ -53,11 +53,28 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int[] solution(int[] A) {
+        int n = A.length;
+        int[] nonDivisorCounts = new int[n];
+        for (int i = 0; i < n; ++i) {
+            int count = 0;
+            for (int j = 0; j < n; ++j) {
+                if (A[i] % A[j] != 0) {
+                    ++count;
+                }
+            }
+            nonDivisorCounts[i] = count;
+        }
+        return nonDivisorCounts;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalArrays(solution.solution(new int[]{3, 1, 2, 3, 6}), new int[]{2, 4, 3, 2, 0});
+        Assertions.equalArrays(solution.solution(new int[]{6, 6}), new int[]{0, 0});
+        Assertions.equalArrays(solution.solution(new int[]{1}), new int[]{0});
+        Assertions.equalArrays(solution.solution(new int[]{2, 2, 2}), new int[]{0, 0, 0});
+        Assertions.equalArrays(solution.solution(new int[]{3, 3, 3}), new int[]{0, 0, 0});
+        Assertions.equalArrays(solution.solution(new int[]{6, 6, 6}), new int[]{0, 0, 0});
+        Assertions.equalArrays(solution.solution(new int[]{4, 4, 4, 4, 4}), new int[]{0, 0, 0, 0, 0});
     }
 }
