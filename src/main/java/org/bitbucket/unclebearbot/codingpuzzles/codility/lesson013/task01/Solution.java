@@ -2,6 +2,8 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson013.task01;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.*;
+
 /*
 
 https://app.codility.com/programmers/lessons/13-fibonacci_numbers/fib_frog
@@ -73,11 +75,44 @@ public class Solution {
         test(new Solution());
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int length = A.length;
+        List<Integer> fib = new ArrayList<>();
+        fib.add(1);
+        fib.add(2);
+        while (true) {
+            int next = fib.get(fib.size() - 1) + fib.get(fib.size() - 2);
+            if (next > length + 1) break;
+            fib.add(next);
+        }
+        Collections.reverse(fib);
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[length + 1];
+        queue.add(-1);
+        int jumps = 0;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            ++jumps;
+            for (int i = 0; i < size; ++i) {
+                int pos = queue.poll();
+                for (int f : fib) {
+                    int nextPos = pos + f;
+                    if (nextPos == length) return jumps;
+                    if (nextPos > length || nextPos < 0 || A[nextPos] == 0 || visited[nextPos]) continue;
+                    visited[nextPos] = true;
+                    queue.add(nextPos);
+                }
+            }
+        }
+        return -1;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}), -1);
+        Assertions.equalObjects(solution.solution(new int[]{0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0}), 3);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1, 1, 1, 1}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{0, 0, 0}), -1);
     }
 }
