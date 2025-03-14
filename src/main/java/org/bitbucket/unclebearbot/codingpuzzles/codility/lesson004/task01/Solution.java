@@ -62,6 +62,7 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
     public int solution(int X, int[] A) {

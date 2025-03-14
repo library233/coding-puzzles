@@ -51,13 +51,26 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A, int[] B) {
+        int n = A.length;
+        int count = 0;
+        int lastEnd = -1;
+        for (int i = 0; i < n; ++i) {
+            if (A[i] > lastEnd) {
+                ++count;
+                lastEnd = B[i];
+            }
+        }
+        return count;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 3, 7, 9, 9}, new int[]{5, 6, 8, 9, 10}), 3);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1, 2, 2}, new int[]{3, 3, 4, 4}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3}, new int[]{3, 4, 5}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{}, new int[]{}), 0);
     }
 }

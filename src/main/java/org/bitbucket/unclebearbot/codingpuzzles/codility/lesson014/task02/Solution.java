@@ -68,13 +68,57 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A, int[] B, int[] C) {
+        int n = A.length, m = C.length, maxPos = 2 * m;
+        int L = maxPos + 1;
+        int INF = m + 1;
+        int[] earliest = new int[L];
+        for (int i = 0; i < L; ++i) earliest[i] = INF;
+        for (int i = 0; i < m; ++i) {
+            int pos = C[i];
+            if (earliest[pos] > i) earliest[pos] = i;
+        }
+        int[] logTable = new int[L + 1];
+        logTable[1] = 0;
+        for (int i = 2; i <= L; ++i) logTable[i] = logTable[i / 2] + 1;
+        int K = logTable[L] + 1;
+        int[][] st = new int[L][K];
+        for (int i = 0; i < L; ++i) st[i][0] = earliest[i];
+        for (int j = 1; j < K; ++j) {
+            for (int i = 0; i + (1 << j) <= L; ++i) {
+                st[i][j] = Math.min(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
+            }
+        }
+        int low = 1, high = m, result = -1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            boolean allNailed = true;
+            for (int i = 0; i < n; ++i) {
+                int from = A[i], to = B[i];
+                int j = logTable[to - from + 1];
+                int minIndex = Math.min(st[from][j], st[to - (1 << j) + 1][j]);
+                if (minIndex >= mid) {
+                    allNailed = false;
+                    break;
+                }
+            }
+            if (allNailed) {
+                result = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return result;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 4, 5, 8}, new int[]{4, 5, 9, 10}, new int[]{4, 6, 7, 10, 2}), 4);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2}, new int[]{1, 2}, new int[]{1, 2}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{1, 4, 5, 8}, new int[]{4, 5, 9, 10}, new int[]{4, 6, 7, 10, 2}), 4);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1, 1}, new int[]{1, 1, 1}, new int[]{2, 2, 2, 2}), -1);
     }
 }

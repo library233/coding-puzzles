@@ -50,6 +50,7 @@ The performance of your solution will not be the focus of the assessment.
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
     public int[] solution(int[] A, int K) {

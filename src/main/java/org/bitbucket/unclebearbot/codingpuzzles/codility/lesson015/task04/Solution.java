@@ -2,6 +2,8 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson015.task04;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.Arrays;
+
 /*
 
 https://app.codility.com/programmers/lessons/15-caterpillar_method/min_abs_sum_of_two
@@ -52,13 +54,43 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int n = A.length;
+        int candidate = Integer.MAX_VALUE;
+        int[] clone = A.clone();
+        Arrays.sort(clone);
+        for (int i = 0; i < n; ++i) {
+            int temp = Math.abs(clone[i] + clone[i]);
+            if (temp < candidate) {
+                candidate = temp;
+            }
+        }
+        int left = 0;
+        int right = n - 1;
+        while (left < right) {
+            int sum = clone[left] + clone[right];
+            int absSum = Math.abs(sum);
+            if (absSum < candidate) {
+                candidate = absSum;
+            }
+            if (sum < 0) {
+                ++left;
+            } else {
+                --right;
+            }
+        }
+        return candidate;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 4, -3}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{-8, 4, 5, -10, 3}), 3);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{-1, 0, 1}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{-5, -3, -1, 0, 3, 6}), 0);
     }
 }

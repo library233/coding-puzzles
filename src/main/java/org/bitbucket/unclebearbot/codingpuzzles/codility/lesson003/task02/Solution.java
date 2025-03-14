@@ -38,7 +38,9 @@ Write an efficient algorithm for the following assumptions:
 public abstract class Solution {
     public static void main(String[] args) {
         test(new Solution01());
+        System.out.println(Solution01.class);
         test(new Solution02());
+        System.out.println(Solution02.class);
     }
 
     public abstract int solution(int[] A);

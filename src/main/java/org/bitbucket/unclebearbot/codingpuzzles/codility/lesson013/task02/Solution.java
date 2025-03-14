@@ -60,13 +60,37 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
-    public int solution() {
-        return 0;
+    public int[] solution(int[] A, int[] B) {
+        int length = A.length;
+        int maxA = 0, maxB = 0;
+        for (int i = 0; i < length; ++i) {
+            if (A[i] > maxA) maxA = A[i];
+            if (B[i] > maxB) maxB = B[i];
+        }
+        int maxN = maxA + 1;
+        int[][] fib = new int[31][maxN + 2];
+        for (int p = 1; p <= maxB; ++p) {
+            int mod = 1 << p;
+            fib[p][0] = 0;
+            fib[p][1] = 1;
+            for (int i = 2; i <= maxN + 1; ++i) {
+                fib[p][i] = (fib[p][i - 1] + fib[p][i - 2]) % mod;
+            }
+        }
+        int[] result = new int[length];
+        for (int i = 0; i < length; ++i) {
+            result[i] = fib[B[i]][A[i] + 1];
+        }
+        return result;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalArrays(solution.solution(new int[]{4, 4, 5, 5, 1}, new int[]{3, 2, 4, 3, 1}), new int[]{5, 1, 8, 0, 1});
+        Assertions.equalArrays(solution.solution(new int[]{4}, new int[]{3}), new int[]{5});
+        Assertions.equalArrays(solution.solution(new int[]{5}, new int[]{4}), new int[]{8});
+        Assertions.equalArrays(solution.solution(new int[]{1, 2, 3}, new int[]{1, 2, 3}), new int[]{1, 2, 3});
     }
 }

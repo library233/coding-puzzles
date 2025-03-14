@@ -62,13 +62,28 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int K, int[] A) {
+        int count = 0;
+        long sum = 0;
+        for (int value : A) {
+            sum += value;
+            if (sum >= K) {
+                ++count;
+                sum = 0;
+            }
+        }
+        return count;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(4, new int[]{1, 2, 3, 4, 1, 1, 3}), 3);
+        Assertions.equalObjects(solution.solution(4, new int[]{1, 1, 1, 1}), 1);
+        Assertions.equalObjects(solution.solution(10, new int[]{5, 5, 5}), 1);
+        Assertions.equalObjects(solution.solution(10, new int[]{5, 5, 5, 5}), 2);
+        Assertions.equalObjects(solution.solution(1, new int[]{1}), 1);
+        Assertions.equalObjects(solution.solution(4, new int[]{1, 2, 3, 1}), 1);
     }
 }

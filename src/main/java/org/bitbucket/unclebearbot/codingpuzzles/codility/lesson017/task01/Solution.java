@@ -63,13 +63,41 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int n = A.length;
+        if (n <= 1) {
+            return A[0];
+        }
+        int[] dp = new int[n];
+        dp[0] = A[0];
+        for (int i = 1; i < n; ++i) {
+            int max_val = Integer.MIN_VALUE;
+            for (int j = 1; j <= 6; ++j) {
+                if (i - j >= 0) {
+                    if (dp[i - j] != Integer.MIN_VALUE) {
+                        max_val = Math.max(max_val, dp[i - j]);
+                    }
+                }
+            }
+            if (max_val != Integer.MIN_VALUE) {
+                dp[i] = max_val + A[i];
+            } else {
+                dp[i] = Integer.MIN_VALUE;
+            }
+        }
+        return dp[n - 1] == Integer.MIN_VALUE ? -1 : dp[n - 1];
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, -2, 0, 9, -1, -2}), 8);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2}), 3);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}), 55);
+        Assertions.equalObjects(solution.solution(new int[]{1, -5, -5, -5, -5, -5, 10}), 11);
+        Assertions.equalObjects(solution.solution(new int[]{1, 0}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, -100}), -99);
+        Assertions.equalObjects(solution.solution(new int[]{-5, 5}), 0);
     }
 }

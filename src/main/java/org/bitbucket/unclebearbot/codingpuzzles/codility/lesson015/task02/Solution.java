@@ -52,13 +52,30 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int M, int[] A) {
+        int n = A.length, result = 0, i = 0, j = 0;
+        int[] occ = new int[M + 1];
+        while (j < n) {
+            if (occ[A[j]] == 0) {
+                occ[A[j]] = 1;
+                result += (j - i + 1);
+                if (result >= 1000000000) return 1000000000;
+                ++j;
+            } else {
+                occ[A[i]] = 0;
+                ++i;
+            }
+        }
+        return result;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(6, new int[]{3, 4, 5, 5, 2}), 9);
+        Assertions.equalObjects(solution.solution(5, new int[]{1, 2, 3, 4, 5}), 15);
+        Assertions.equalObjects(solution.solution(10, new int[]{1, 1, 1, 1, 1}), 5);
+        Assertions.equalObjects(solution.solution(0, new int[]{0}), 1);
     }
 }

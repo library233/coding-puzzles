@@ -46,13 +46,44 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int n = A.length;
+        int count = 0;
+        int left = 0;
+        int right = n - 1;
+        while (left <= right) {
+            int absLeft = Math.abs(A[left]), absRight = Math.abs(A[right]);
+            if (absLeft == absRight) {
+                ++count;
+                while (left <= right && Math.abs(A[left]) == absLeft) {
+                    ++left;
+                }
+                while (left <= right && Math.abs(A[right]) == absRight) {
+                    --right;
+                }
+            } else if (absLeft < absRight) {
+                ++count;
+                while (left <= right && Math.abs(A[right]) == absRight) {
+                    --right;
+                }
+            } else {
+                ++count;
+                while (left <= right && Math.abs(A[left]) == absLeft) {
+                    ++left;
+                }
+            }
+        }
+        return count;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{-5, -3, -1, 0, 3, 6}), 5);
+        Assertions.equalObjects(solution.solution(new int[]{-3, -2, 2, 3}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{-1, -1, 0, 1, 1}), 2);
+        Assertions.equalObjects(solution.solution(new int[]{-10, -10, -5, 0, 5, 10}), 3);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3, 4, 5}), 5);
     }
 }

@@ -2,6 +2,8 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson017.task02;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.BitSet;
+
 /*
 
 https://app.codility.com/programmers/lessons/17-dynamic_programming/min_abs_sum
@@ -35,13 +37,36 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int total = 0;
+        for (int a : A) {
+            total += Math.abs(a);
+        }
+        BitSet possible = new BitSet(total + 1);
+        possible.set(0);
+        for (int a : A) {
+            int x = Math.abs(a);
+            BitSet shifted = new BitSet(total + 1);
+            for (int i = possible.nextSetBit(0); i >= 0; i = possible.nextSetBit(i + 1)) {
+                if (i + x <= total) shifted.set(i + x);
+            }
+            possible.or(shifted);
+        }
+        int result = total;
+        for (int i = 0; i <= total / 2; ++i) {
+            if (possible.get(i)) result = Math.min(result, total - 2 * i);
+        }
+        return result;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 5, 2, -2}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{3, 3, 3}), 3);
+        Assertions.equalObjects(solution.solution(new int[]{1, 1, 2, 2}), 0);
+        Assertions.equalObjects(solution.solution(new int[]{}), 0);
     }
 }

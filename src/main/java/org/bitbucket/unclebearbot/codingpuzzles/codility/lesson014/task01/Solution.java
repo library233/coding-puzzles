@@ -63,13 +63,42 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int K, int M, int[] A) {
+        int n = A.length, low = 0, high = 0;
+        for (int k : A) {
+            high += k;
+            if (k > low) low = k;
+        }
+        int result = high;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int blocks = 1, sum = 0;
+            for (int j : A) {
+                if (sum + j > mid) {
+                    ++blocks;
+                    sum = j;
+                } else {
+                    sum += j;
+                }
+            }
+            if (blocks <= K) {
+                result = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return result;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(3, 5, new int[]{2, 1, 5, 1, 2, 2, 2}), 6);
+        Assertions.equalObjects(solution.solution(1, 5, new int[]{2, 1, 5, 1, 2, 2, 2}), 15);
+        Assertions.equalObjects(solution.solution(3, 5, new int[]{0, 0, 0, 0}), 0);
+        Assertions.equalObjects(solution.solution(2, 5, new int[]{1, 1, 1, 1, 1}), 3);
+        Assertions.equalObjects(solution.solution(3, 10, new int[]{7, 2, 5, 10, 8}), 14);
     }
 }

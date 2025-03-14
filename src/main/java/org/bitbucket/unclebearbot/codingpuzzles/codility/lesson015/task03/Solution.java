@@ -2,6 +2,8 @@ package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson015.task03;
 
 import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
 
+import java.util.Arrays;
+
 /*
 
 https://app.codility.com/programmers/lessons/15-caterpillar_method/count_triangles
@@ -40,13 +42,32 @@ Write an efficient algorithm for the following assumptions:
 public class Solution {
     public static void main(String[] args) {
         test(new Solution());
+        System.out.println(Solution.class);
     }
 
-    public int solution() {
-        return 0;
+    public int solution(int[] A) {
+        int n = A.length;
+        if (n < 3) return 0;
+        Arrays.sort(A);
+        int count = 0;
+        for (int r = n - 1; r >= 2; --r) {
+            int i = 0, j = r - 1;
+            while (i < j) {
+                if (A[i] + A[j] > A[r]) {
+                    count += (j - i);
+                    --j;
+                } else {
+                    ++i;
+                }
+            }
+        }
+        return count;
     }
 
     public static void test(Solution solution) {
-        Assertions.equalObjects(solution.solution(), 0);
+        Assertions.equalObjects(solution.solution(new int[]{10, 2, 5, 1, 8, 12}), 4);
+        Assertions.equalObjects(solution.solution(new int[]{10, 2, 2, 1}), 1);
+        Assertions.equalObjects(solution.solution(new int[]{1, 2, 3, 4, 5}), 3);
+        Assertions.equalObjects(solution.solution(new int[]{10, 10, 10}), 1);
     }
 }
