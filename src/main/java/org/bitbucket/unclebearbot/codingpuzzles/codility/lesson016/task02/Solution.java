@@ -1,6 +1,6 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson016.task02;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
+import org.bitbucket.unclebearbot.utils.Assertions;
 
 /*
 

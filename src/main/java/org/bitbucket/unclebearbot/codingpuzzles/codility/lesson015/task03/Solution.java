@@ -1,6 +1,6 @@
 package org.bitbucket.unclebearbot.codingpuzzles.codility.lesson015.task03;
 
-import org.bitbucket.unclebearbot.codingpuzzles.utils.Assertions;
+import org.bitbucket.unclebearbot.utils.Assertions;
 
 import java.util.Arrays;
 
