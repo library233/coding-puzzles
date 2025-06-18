@@ -5,6 +5,8 @@ package org.bitbucket.unclebearbot.codingpuzzles.leetcode.problem00003;
 https://leetcode.com/problems/longest-substring-without-repeating-characters
 
 3. Longest Substring Without Repeating Characters
+(Medium)
+
 Given a string s, find the length of the longest substring without duplicate characters.
 
 Example 1:

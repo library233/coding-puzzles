@@ -5,6 +5,8 @@ package org.bitbucket.unclebearbot.codingpuzzles.leetcode.problem00146;
 https://leetcode.com/problems/lru-cache
 
 146. LRU Cache
+(Medium)
+
 Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.
 
 Implement the LRUCache class:

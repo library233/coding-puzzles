@@ -5,6 +5,8 @@ package org.bitbucket.unclebearbot.codingpuzzles.leetcode.problem00647;
 https://leetcode.com/problems/palindromic-substrings
 
 647. Palindromic Substrings
+(Medium)
+
 Given a string s, return the number of palindromic substrings in it.
 
 A string is a palindrome when it reads the same backward as forward.
