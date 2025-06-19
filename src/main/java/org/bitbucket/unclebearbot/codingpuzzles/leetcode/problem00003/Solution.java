@@ -41,12 +41,17 @@ class Solution {
         int beginIndex = 0;
         int[] minIndices = new int[128];
         for (int i = 0; i < s.length(); ++i) {
-            char c = s.charAt(i);
-            int minIndex = minIndices[c];
-            beginIndex = Math.max(beginIndex, minIndex);
+            int charAsInt = s.charAt(i);
+            int minIndex = minIndices[charAsInt];
+            if (minIndex > beginIndex) {
+                beginIndex = minIndex;
+            }
             int endIndex = i + 1;
-            maxLength = Math.max(maxLength, endIndex - beginIndex);
-            minIndices[c] = endIndex;
+            int length = endIndex - beginIndex;
+            if (length > maxLength) {
+                maxLength = length;
+            }
+            minIndices[charAsInt] = endIndex;
         }
         return maxLength;
     }
