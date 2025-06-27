@@ -33,31 +33,33 @@ Follow up: A linked list can be reversed either iteratively or recursively. Coul
 
  */
 
-class Solution {
-    class Recursively {
-        public ListNode reverseList(ListNode head) {
-            if (head == null || head.next == null) {
-                return head;
-            }
-            ListNode reversedHead = reverseList(head.next);
-            head.next.next = head;
-            head.next = null;
-            return reversedHead;
-        }
-    }
+abstract class Solution {
+    public abstract ListNode reverseList(ListNode head);
+}
 
-    class Iteratively {
-        public ListNode reverseList(ListNode head) {
-            ListNode previous = null;
-            ListNode current = head;
-            while (current != null) {
-                ListNode currentNext = current.next;
-                current.next = previous;
-                previous = current;
-                current = currentNext;
-            }
-            return previous;
+class RecursiveSolution extends Solution {
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
+        ListNode reversedHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return reversedHead;
+    }
+}
+
+class IterativeSolution extends Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode previous = null;
+        ListNode current = head;
+        while (current != null) {
+            ListNode currentNext = current.next;
+            current.next = previous;
+            previous = current;
+            current = currentNext;
+        }
+        return previous;
     }
 }
 
