@@ -100,11 +100,11 @@ class Solution {
             for (int prefixLength2 = 1; prefixLength2 <= s2.length(); ++prefixLength2) {
                 boolean canUsePrefixFrom1 = dp[prefixLength1 - 1][prefixLength2];
                 int index1 = prefixLength1 - 1;
-                boolean canUseNextCharFrom1 = canUsePrefixFrom1 && isEqualCharAt(s1, s3, index1, prefixLength2);
+                boolean canUseCurrentCharFrom1 = canUsePrefixFrom1 && isEqualCharAt(s1, s3, index1, prefixLength2);
                 boolean canUsePrefixFrom2 = dp[prefixLength1][prefixLength2 - 1];
                 int index2 = prefixLength2 - 1;
-                boolean canUseNextCharFrom2 = canUsePrefixFrom2 && isEqualCharAt(s2, s3, index2, prefixLength1);
-                boolean canFormBySubstringsOfTheseLengths = canUseNextCharFrom1 || canUseNextCharFrom2;
+                boolean canUseCurrentCharFrom2 = canUsePrefixFrom2 && isEqualCharAt(s2, s3, index2, prefixLength1);
+                boolean canFormBySubstringsOfTheseLengths = canUseCurrentCharFrom1 || canUseCurrentCharFrom2;
                 dp[prefixLength1][prefixLength2] = canFormBySubstringsOfTheseLengths;
             }
         }
