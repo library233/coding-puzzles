@@ -82,22 +82,22 @@ class NumArray {
             nodes[node] = nodes[leftChild] + nodes[rightChild];
         }
 
-        protected void update(int index, int val) {
-            update(root, 0, length - 1, index, val);
+        protected void update(int index, int value) {
+            update(root, 0, length - 1, index, value);
         }
 
-        private void update(int node, int nodeRangeBegin, int nodeRangeEnd, int index, int val) {
+        private void update(int node, int nodeRangeBegin, int nodeRangeEnd, int index, int value) {
             if (nodeRangeBegin == nodeRangeEnd) {
-                nodes[node] = val;
+                nodes[node] = value;
                 return;
             }
             int leftChild = 2 * node;
             int rightChild = 2 * node + 1;
             int midNode = (nodeRangeBegin + nodeRangeEnd) / 2;
             if (index <= midNode) {
-                update(leftChild, nodeRangeBegin, midNode, index, val);
+                update(leftChild, nodeRangeBegin, midNode, index, value);
             } else {
-                update(rightChild, midNode + 1, nodeRangeEnd, index, val);
+                update(rightChild, midNode + 1, nodeRangeEnd, index, value);
             }
             nodes[node] = nodes[leftChild] + nodes[rightChild];
         }
