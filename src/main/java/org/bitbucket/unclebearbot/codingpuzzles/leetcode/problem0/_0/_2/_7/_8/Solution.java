@@ -35,6 +35,7 @@ Constraints:
  */
 
 public class Solution extends VersionControl {
+    @Override
     public int firstBadVersion(int n) {
         long min = 1;
         long max = n;
@@ -53,7 +54,9 @@ public class Solution extends VersionControl {
 /* The isBadVersion API is defined in the parent class VersionControl.
       boolean isBadVersion(int version); */
 
-class VersionControl {
+abstract class VersionControl {
+    public abstract int firstBadVersion(int n);
+
     boolean isBadVersion(int version) {
         return isProblemCreatedBy(version) || isBadVersion(version - 1);
     }

@@ -48,6 +48,7 @@ abstract class Solution {
 }
 
 class RecursiveSolution extends Solution {
+    @Override
     public boolean isSymmetric(TreeNode root) {
         if (root == null) {
             return true;
@@ -76,6 +77,7 @@ class RecursiveSolution extends Solution {
 }
 
 class IterativeSolution extends Solution {
+    @Override
     public boolean isSymmetric(TreeNode root) {
         if (root == null) {
             return true;

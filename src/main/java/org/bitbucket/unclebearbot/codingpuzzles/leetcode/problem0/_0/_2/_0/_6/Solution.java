@@ -38,6 +38,7 @@ abstract class Solution {
 }
 
 class RecursiveSolution extends Solution {
+    @Override
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
@@ -50,6 +51,7 @@ class RecursiveSolution extends Solution {
 }
 
 class IterativeSolution extends Solution {
+    @Override
     public ListNode reverseList(ListNode head) {
         ListNode previous = null;
         ListNode current = head;
