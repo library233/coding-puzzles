@@ -30,7 +30,7 @@ Explanation: Your function can return either index number 1 where the peak eleme
 Constraints:
 
     1 <= nums.length <= 1000
-    -231 <= nums[i] <= 2^31 - 1
+    -2^31 <= nums[i] <= 2^31 - 1
     nums[i] != nums[i + 1] for all valid i.
 
  */
