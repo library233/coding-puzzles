@@ -42,7 +42,7 @@ Constraints:
  */
 
 class Solution {
-    private static final int MAGIC_MOD = (int) (Math.pow(10, 9) + 7);
+    private final static int MAGIC_MOD = 1000000007;
 
     public int numTilings(int n) {
         if (n < 3) {
